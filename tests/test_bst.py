@@ -60,6 +60,16 @@ class TestBinarySearchTree(unittest.TestCase):
         test_tree.delete(0)
         self.assertTrue(test_tree.size == 0)
 
+    def test_find(self):
+        test_tree = bst.BinarySearchTree()
+        test_tree.insert(3)
+        test_tree.insert(2)
+        test_tree.insert(1)
+        test_tree.insert(4)
+        test_tree.insert(5)
+        nodes = test_tree.find(1, 3)
+        self.assertTrue(len(nodes) == 3)
+
     def test_insert(self):
         test_tree = bst.BinarySearchTree()
         test_tree.insert(1)
