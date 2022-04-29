@@ -2,7 +2,7 @@
 Implementation of a binary search tree.
 """
 
-from typing import Any, Callable, Optional
+from typing import Any, Callable, List, Optional, Union
 
 from .node import Node
 from .traversal import Traversal
@@ -98,6 +98,26 @@ class BinarySearchTree:
                 node = node.left
             self._size -= 1
         return node
+
+    def find(self, min_key: int, max_key: int) -> list[Optional[Node]]:
+        """
+        """
+        return self._find(min_key, max_key, self._root)
+
+    def _find(self,
+              min_key: int,
+              max_key: int,
+              node: Optional[Node]) -> list[Optional[Node]]:
+        if node is None:
+            return []
+        if (min_key <= node.key) and (node.key <= max_key):
+            L = self._find(min_key, max_key, node.left)
+            R = self._find(min_key, max_key, node.right)
+            return L + [node] + R
+        elif min_key > node.key:
+            return self._find(min_key, max_key, node.right)
+        elif max_key < node.key:
+            return self._find(min_key, max_key, node.left)
 
     def insert(self, key: int, value: Optional[Any] = None) -> None:
         """
