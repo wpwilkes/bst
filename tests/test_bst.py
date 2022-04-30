@@ -36,12 +36,6 @@ class TestBinarySearchTree(unittest.TestCase):
         test_tree.insert(3)
         self.assertTrue(test_tree.min.key == 1)
 
-    def test_size(self):
-        test_tree = bst.BinarySearchTree()
-        self.assertTrue(test_tree.size == 0)
-        test_tree.insert(0)
-        self.assertTrue(test_tree.size == 1)
-
     def test_delete(self):
         test_tree = bst.BinarySearchTree()
         test_tree.insert(1)
@@ -50,15 +44,15 @@ class TestBinarySearchTree(unittest.TestCase):
         test_tree.insert(2)
         test_tree.insert(4)
         test_tree.delete(1)
-        self.assertTrue(test_tree.size == 4)
+        self.assertIsNone(bst.algorithms.search(test_tree.root, 1))
         test_tree.delete(3)
-        self.assertTrue(test_tree.size == 3)
+        self.assertIsNone(bst.algorithms.search(test_tree.root, 3))
         test_tree.delete(2)
-        self.assertTrue(test_tree.size == 2)
+        self.assertIsNone(bst.algorithms.search(test_tree.root, 2))
         test_tree.delete(4)
-        self.assertTrue(test_tree.size == 1)
+        self.assertIsNone(bst.algorithms.search(test_tree.root, 1))
         test_tree.delete(0)
-        self.assertTrue(test_tree.size == 0)
+        self.assertIsNone(bst.algorithms.search(test_tree.root, 0))
 
     def test_find(self):
         test_tree = bst.BinarySearchTree()
@@ -73,11 +67,11 @@ class TestBinarySearchTree(unittest.TestCase):
     def test_insert(self):
         test_tree = bst.BinarySearchTree()
         test_tree.insert(1)
-        self.assertTrue(test_tree.size == 1)
+        self.assertTrue(bst.algorithms.search(test_tree.root, 1))
         test_tree.insert(0)
-        self.assertTrue(test_tree.size == 2)
+        self.assertTrue(bst.algorithms.search(test_tree.root, 0))
         test_tree.insert(2)
-        self.assertTrue(test_tree.size == 3)
+        self.assertTrue(bst.algorithms.search(test_tree.root, 2))
 
     def test_search(self):
         test_tree = bst.BinarySearchTree()
