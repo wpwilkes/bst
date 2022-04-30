@@ -66,7 +66,7 @@ class BinarySearchTree:
         key : int
             The key to remove.
         """
-        self._root = updates.delete(self._root, key)
+        self._root = updates.delete(self._root, key, None)
 
     def insert(self,
                key: int,
@@ -81,7 +81,4 @@ class BinarySearchTree:
         value : any, optional
             The value to insert. Default is None.
         """
-        if self._root is None:
-            self._root = Node(key, value)
-        else:
-            updates.insert(self._root, key, value)
+        self._root = updates.insert(self._root, key, value, None)

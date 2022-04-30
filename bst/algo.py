@@ -8,6 +8,23 @@ import builtins
 from bst.node import Node
 
 
+def balance(node: Node) -> int:
+    """
+    Compute the balance of a node.
+
+    Parameters
+    ----------
+    node : node
+        The node whose balance will be computed.
+
+    Returns
+    -------
+    int :
+        The node's balance.
+    """
+    return height(node.left) - height(node.right)
+
+
 def depth(node: Optional[Node]) -> int:
     """
     Compute the depth of a node.
