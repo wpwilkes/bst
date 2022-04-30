@@ -50,7 +50,7 @@ def delete(node:Optional[Node],
                 node.left.parent = node.parent
             node = node.left
     if restructure:
-        restructure(node, key)
+        node = restructure(node, key)
     return node
 
 

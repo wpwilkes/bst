@@ -15,14 +15,14 @@ def avl_delete_fix(node:Optional[Node], key: int) -> Optional[Node]:
         balance = algorithms.balance(node)
         if balance > 1:
             if algorithms.balance(node.left) >= 0:
-                rotations.right_rotate(node)
+                node = rotations.right_rotate(node)
             elif algorithms.balance(node.left) < 0:
-                rotations.left_right_rotate(node)
+                node = rotations.left_right_rotate(node)
         if balance < -1:
             if algorithms.balance(node.right) <= 0:
-                rotations.left_rotate(node)
+                node = rotations.left_rotate(node)
             elif algorithms.balance(node.right) > 0:
-                rotations.right_left_rotate(node)
+                node = rotations.right_left_rotate(node)
     return node
 
 
