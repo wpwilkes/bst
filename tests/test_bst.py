@@ -67,7 +67,7 @@ class TestBinarySearchTree(unittest.TestCase):
         test_tree.insert(1)
         test_tree.insert(4)
         test_tree.insert(5)
-        nodes = test_tree.find(1, 3)
+        nodes = bst.algorithms.search_range(test_tree.root, 1, 3)
         self.assertTrue(len(nodes) == 3)
 
     def test_insert(self):
@@ -81,25 +81,25 @@ class TestBinarySearchTree(unittest.TestCase):
 
     def test_search(self):
         test_tree = bst.BinarySearchTree()
-        self.assertTrue(test_tree.search(0) is None)
+        self.assertTrue(bst.algorithms.search(test_tree.root, 0) is None)
         test_tree.insert(0)
-        self.assertTrue(test_tree.search(0).key == 0)
+        self.assertTrue(bst.algorithms.search(test_tree.root, 0).key == 0)
 
     def test_traverse(self):
         test_tree = bst.BinarySearchTree()
         for i in range(5):
             test_tree.insert(i)
         keys = []
-        test_tree.traverse(bst.Traversal.INORDER,
-                           lambda n: keys.append(n.key))
+        bst.algorithms.inorder_traverse(test_tree.root,
+                                        lambda n: keys.append(n.key))
         self.assertEqual(keys, [0, 1, 2, 3, 4])
         keys = []
-        test_tree.traverse(bst.Traversal.PREORDER,
-                           lambda n: keys.append(n.key))
+        bst.algorithms.preorder_traverse(test_tree.root,
+                                         lambda n: keys.append(n.key))
         self.assertEqual(keys, [0, 1, 2, 3, 4])
         keys = []
-        test_tree.traverse(bst.Traversal.POSTORDER,
-                           lambda n: keys.append(n.key))
+        bst.algorithms.postorder_traverse(test_tree.root,
+                                          lambda n: keys.append(n.key))
         self.assertEqual(keys, [4, 3, 2, 1, 0])
 
 

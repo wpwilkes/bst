@@ -1,2 +1,2 @@
 from .bst import BinarySearchTree
-from .traversal import Traversal
+import bst.algo as algorithms
