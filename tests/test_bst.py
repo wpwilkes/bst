@@ -36,12 +36,6 @@ class TestBinarySearchTree(unittest.TestCase):
         test_tree.insert(3)
         self.assertTrue(test_tree.min.key == 1)
 
-    def test_size(self):
-        test_tree = bst.BinarySearchTree()
-        self.assertTrue(test_tree.size == 0)
-        test_tree.insert(0)
-        self.assertTrue(test_tree.size == 1)
-
     def test_delete(self):
         test_tree = bst.BinarySearchTree()
         test_tree.insert(1)
@@ -50,15 +44,15 @@ class TestBinarySearchTree(unittest.TestCase):
         test_tree.insert(2)
         test_tree.insert(4)
         test_tree.delete(1)
-        self.assertTrue(test_tree.size == 4)
+        self.assertIsNone(bst.algorithms.search(test_tree.root, 1))
         test_tree.delete(3)
-        self.assertTrue(test_tree.size == 3)
+        self.assertIsNone(bst.algorithms.search(test_tree.root, 3))
         test_tree.delete(2)
-        self.assertTrue(test_tree.size == 2)
+        self.assertIsNone(bst.algorithms.search(test_tree.root, 2))
         test_tree.delete(4)
-        self.assertTrue(test_tree.size == 1)
+        self.assertIsNone(bst.algorithms.search(test_tree.root, 1))
         test_tree.delete(0)
-        self.assertTrue(test_tree.size == 0)
+        self.assertIsNone(bst.algorithms.search(test_tree.root, 0))
 
     def test_find(self):
         test_tree = bst.BinarySearchTree()
@@ -67,39 +61,39 @@ class TestBinarySearchTree(unittest.TestCase):
         test_tree.insert(1)
         test_tree.insert(4)
         test_tree.insert(5)
-        nodes = test_tree.find(1, 3)
+        nodes = bst.algorithms.search_range(test_tree.root, 1, 3)
         self.assertTrue(len(nodes) == 3)
 
     def test_insert(self):
         test_tree = bst.BinarySearchTree()
         test_tree.insert(1)
-        self.assertTrue(test_tree.size == 1)
+        self.assertTrue(bst.algorithms.search(test_tree.root, 1))
         test_tree.insert(0)
-        self.assertTrue(test_tree.size == 2)
+        self.assertTrue(bst.algorithms.search(test_tree.root, 0))
         test_tree.insert(2)
-        self.assertTrue(test_tree.size == 3)
+        self.assertTrue(bst.algorithms.search(test_tree.root, 2))
 
     def test_search(self):
         test_tree = bst.BinarySearchTree()
-        self.assertTrue(test_tree.search(0) is None)
+        self.assertTrue(bst.algorithms.search(test_tree.root, 0) is None)
         test_tree.insert(0)
-        self.assertTrue(test_tree.search(0).key == 0)
+        self.assertTrue(bst.algorithms.search(test_tree.root, 0).key == 0)
 
     def test_traverse(self):
         test_tree = bst.BinarySearchTree()
         for i in range(5):
             test_tree.insert(i)
         keys = []
-        test_tree.traverse(bst.Traversal.INORDER,
-                           lambda n: keys.append(n.key))
+        bst.algorithms.inorder_traverse(test_tree.root,
+                                        lambda n: keys.append(n.key))
         self.assertEqual(keys, [0, 1, 2, 3, 4])
         keys = []
-        test_tree.traverse(bst.Traversal.PREORDER,
-                           lambda n: keys.append(n.key))
+        bst.algorithms.preorder_traverse(test_tree.root,
+                                         lambda n: keys.append(n.key))
         self.assertEqual(keys, [0, 1, 2, 3, 4])
         keys = []
-        test_tree.traverse(bst.Traversal.POSTORDER,
-                           lambda n: keys.append(n.key))
+        bst.algorithms.postorder_traverse(test_tree.root,
+                                          lambda n: keys.append(n.key))
         self.assertEqual(keys, [4, 3, 2, 1, 0])
 
 

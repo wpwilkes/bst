@@ -32,6 +32,6 @@ tree.insert(1)
 tree.insert(0)
 tree.insert(2)
 
-tree.search(0)
+bst.algorithms.search(tree.root, 0)
 # Node(key=0, value=None)
 ```
