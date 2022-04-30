@@ -8,6 +8,12 @@ import builtins
 from bst.node import Node
 
 
+def balance(node: Node) -> int:
+    """
+    """
+    return height(node.left) - height(node.right)
+
+
 def height(node: Optional[Node]) -> int:
     """
     """

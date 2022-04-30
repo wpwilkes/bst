@@ -14,6 +14,7 @@ class Node:
         self.value = value
         self.left : Optional[Node] = None
         self.right : Optional[Node] = None
+        self.parent: Optional[Node] = None
 
     def __repr__(self):
         """

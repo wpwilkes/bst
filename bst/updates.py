@@ -25,11 +25,15 @@ def delete(node:Optional[Node],
         node.right = delete(node.right, temp.key, restructure)
     else:
         if node.left is None:
+            if node.right:
+                node.right.parent = node.parent
             node = node.right
         elif node.right is None:
+            if node.left:
+                node.left.parent = node.parent
             node = node.left
     if restructure:
-        restructure(node)
+        restructure(node, key)
     return node
 
 
@@ -43,11 +47,15 @@ def insert(node: Node,
         if node.left:
             insert(node.left, key, value, restructure)
         else:
-            node.left = Node(key, value)
+            new_node = Node(key, value)
+            new_node.parent = node
+            node.left = new_node
     else:
         if node.right:
             insert(node.right, key, value, restructure)
         else:
-            node.right = Node(key, value)
+            new_node = Node(key, value)
+            new_node.parent = node
+            node.right = new_node
     if restructure:
-        restructure(node)
+        restructure(node, key)
