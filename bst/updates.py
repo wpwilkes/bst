@@ -1,4 +1,5 @@
 """
+Implementation of binary search tree update operations.
 """
 
 from typing import Any, Callable, Optional
@@ -11,6 +12,22 @@ def delete(node:Optional[Node],
            key: int,
            restructure: Optional[Callable] = None) -> Optional[Node]:
     """
+    Remove a node with key from the tree rooted at node.
+
+    Parameters
+    ----------
+    node : Node
+        The root of a tree.
+    key : int
+        The key to remove from the tree.
+    restructure : callable, optional
+        A method to restructure the tree rooted at node.
+        Default is None.
+
+    Returns
+    -------
+    node :
+        The tree with the key removed.
     """
     if node is None:
         return None
@@ -35,9 +52,22 @@ def delete(node:Optional[Node],
 
 def insert(node: Node,
            key: int,
-           value: Any,
+           value: Optional[Any] = None,
            restructure: Optional[Callable] = None) -> None:
     """
+    Insert the key-value pair into the tree rooted at node.
+
+    Parameters
+    ----------
+    node : Node
+        The root of a tree.
+    key : int
+        The new node's key.
+    value : any, optional
+        The new node's value. Default is None.
+    restructure : callable, optional
+        A method to restructure the tree rooted at node.
+        Default is None.
     """
     if key <= node.key:
         if node.left:
