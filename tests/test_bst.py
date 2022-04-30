@@ -1,5 +1,5 @@
 """
-Test suite for the `bst.bst` module.
+Test suite for the `bst.bst` module API.
 """
 
 import unittest

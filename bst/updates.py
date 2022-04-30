@@ -54,16 +54,16 @@ def delete(node:Optional[Node],
     return node
 
 
-def insert(node: Node,
+def insert(node: Optional[Node],
            key: int,
            value: Optional[Any] = None,
-           restructure: Optional[Callable] = None) -> None:
+           restructure: Optional[Callable[[Node, int], Node]] = None) -> Node:
     """
     Insert the key-value pair into the tree rooted at node.
 
     Parameters
     ----------
-    node : Node
+    node : Node, optional
         The root of a tree.
     key : int
         The new node's key.
@@ -72,20 +72,20 @@ def insert(node: Node,
     restructure : callable, optional
         A method to restructure the tree rooted at node.
         Default is None.
+
+    Returns
+    -------
+    node : Node
+        The updated tree rooted at node.
     """
-    if key <= node.key:
-        if node.left:
-            insert(node.left, key, value, restructure)
-        else:
-            new_node = Node(key, value)
-            new_node.parent = node
-            node.left = new_node
+    if node is None:
+        node = Node(key, value)
+    elif key <= node.key:
+        node.left = insert(node.left, key, value, restructure)
+        node.left.parent = node
     else:
-        if node.right:
-            insert(node.right, key, value, restructure)
-        else:
-            new_node = Node(key, value)
-            new_node.parent = node
-            node.right = new_node
+        node.right = insert(node.right, key, value, restructure)
+        node.right.parent = node
     if restructure:
-        restructure(node, key)
+        node = restructure(node, key)
+    return node
