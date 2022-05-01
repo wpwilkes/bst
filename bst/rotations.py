@@ -7,9 +7,10 @@ from bst.node import Node
 
 def left_rotate(z: Node) -> Node:
     """
+    Perform a left rotation about the given node.
     """
     if not z.right:
-        raise ValueError
+        raise ValueError("Left rotate about a node with no right child.")
     y = z.right
     z.right = y.left
     if y.left:
@@ -27,17 +28,19 @@ def left_rotate(z: Node) -> Node:
 
 def left_right_rotate(z: Node) -> Node:
     """
+    Perform a left-right rotation about the given node.
     """
     if not z.left:
-        raise ValueError
+        raise ValueError("Left-right rotate about a node with no left child.")
     return right_rotate(left_rotate(z.left))
 
 
 def right_rotate(z: Node) -> Node:
     """
+    Perform a right rotation about the given node.
     """
     if not z.left:
-        raise ValueError
+        raise ValueError("Right rotate about a node with no left child.")
     y = z.left
     z.left = y.right
     if y.right:
@@ -55,7 +58,8 @@ def right_rotate(z: Node) -> Node:
 
 def right_left_rotate(z: Node) -> Node:
     """
+    Perform a right-left rotation about the given node.
     """
     if not z.right:
-        raise ValueError
+        raise ValueError("Right-left rotate about a node with no right child.")
     return left_rotate(right_rotate(z.right))
